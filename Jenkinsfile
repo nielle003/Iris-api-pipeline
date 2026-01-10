@@ -17,15 +17,15 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo '📦 Installing dependencies...'
-                bat 'python -m pip install --upgrade pip'
-                bat 'pip install -r requirements.txt'
+                sh 'python3 -m pip install --upgrade pip'
+                sh 'pip install -r requirements.txt'
             }
         }
         
         stage('Run Tests') {
             steps {
                 echo '🧪 Running tests...'
-                bat 'python -m pytest tests/ -v --junitxml=test-results.xml'
+                sh 'python3 -m pytest tests/ -v --junitxml=test-results.xml'
             }
             post {
                 always {
@@ -37,8 +37,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo '🐳 Building Docker image...'
-                bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                bat "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
             }
         }
     }
