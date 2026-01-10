@@ -22,7 +22,11 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo '📦 Installing dependencies...'
-                sh 'pip install --no-cache-dir -r requirements.txt'
+                sh '''
+                    apt-get update -qq
+                    apt-get install -y docker.io
+                    pip install --no-cache-dir -r requirements.txt
+                '''
             }
         }
         
