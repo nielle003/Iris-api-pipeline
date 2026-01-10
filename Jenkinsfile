@@ -6,6 +6,11 @@ pipeline {
         }
     }
     
+    // Enable GitHub webhook triggers
+    triggers {
+        githubPush()
+    }
+    
     environment {
         IMAGE_NAME = 'iris-api'
         IMAGE_TAG = "${BUILD_NUMBER}"
