@@ -8,10 +8,6 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Trained models (too large for git)
-model/*.joblib
-model/*.pkl
-
 # IDE files
 .vscode/
 .idea/
